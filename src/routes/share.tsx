@@ -13,6 +13,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import { LOUNGE } from "@/lib/lounge";
+import { NETLIFY_FORM_NAME, submitNetlifyForm } from "@/lib/netlify-form";
 import { loungeLogo, galleryImages } from "@/lib/site-images";
 import { SHARE_OG_IMAGE, SHARE_PAGE_META } from "@/lib/sharePageMeta";
 import { cn } from "@/lib/utils";
@@ -94,32 +95,50 @@ function ShareLinkButton({ label, href, external, animatedArrow, icon: Icon }: S
 
 function ShareContactForm() {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Phone: ${data.get("phone")}`,
-      "",
-      String(data.get("message") ?? ""),
-    ].join("\n");
-    window.location.href = `mailto:${LOUNGE.email}?subject=${encodeURIComponent("Enquiry from share page")}&body=${encodeURIComponent(body)}`;
-    e.currentTarget.reset();
-    setSent(true);
+    const form = e.currentTarget;
+    setSending(true);
+    setError(false);
+    try {
+      await submitNetlifyForm(form);
+      form.reset();
+      setSent(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   if (sent) {
     return (
       <p className="border-t border-border/60 px-5 py-4 text-center text-sm text-muted-foreground" role="status">
-        Your email app should open — send the message from there.
+        Thanks — we received your enquiry. If it is urgent, call {LOUNGE.phoneDisplay}.
       </p>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-2.5 border-t border-border/60 px-4 pb-4 pt-3">
-      <input name="name" type="text" autoComplete="name" placeholder="Your name" className={SHARE_FIELD_CLASS} />
+    <form
+      name={NETLIFY_FORM_NAME}
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
+      className="space-y-2.5 border-t border-border/60 px-4 pb-4 pt-3"
+    >
+      <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+      <p className="hidden" aria-hidden>
+        <label>
+          Leave this empty
+          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+        </label>
+      </p>
+      <input name="name" type="text" required autoComplete="name" placeholder="Your name" className={SHARE_FIELD_CLASS} />
       <input
         name="phone"
         type="tel"
@@ -136,11 +155,17 @@ function ShareContactForm() {
       />
       <button
         type="submit"
-        className={cn(SHARE_TAB_CLASS, "justify-center gap-2 bg-gold text-primary-foreground hover:bg-gold/90 hover:text-primary-foreground")}
+        disabled={sending}
+        className={cn(SHARE_TAB_CLASS, "justify-center gap-2 bg-gold text-primary-foreground hover:bg-gold/90 hover:text-primary-foreground disabled:opacity-60")}
       >
-        <span>Send enquiry</span>
+        <span>{sending ? "Sending…" : "Send enquiry"}</span>
         <Send className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
       </button>
+      {error ? (
+        <p className="text-center text-xs text-muted-foreground" role="status">
+          Something went wrong. Call {LOUNGE.phoneDisplay} instead.
+        </p>
+      ) : null}
     </form>
   );
 }
@@ -156,7 +181,7 @@ export const Route = createFileRoute("/share")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: SHARE_PAGE_META.ogUrl },
       { property: "og:image", content: SHARE_OG_IMAGE },
-      { property: "og:image:alt", content: "Shisha at Hookahs Lounge, Coventry" },
+      { property: "og:image:alt", content: "Shisha at HOOKAHS, Birmingham" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SHARE_PAGE_META.ogTitle },
       { name: "twitter:description", content: SHARE_PAGE_META.description },
@@ -196,7 +221,7 @@ function SharePage() {
               <img src={loungeLogo} alt="" className="h-[4.5rem] w-auto max-w-[min(85vw,280px)] object-contain drop-shadow-[0_0_40px_rgba(240,190,40,0.2)]" />
             </Link>
             <p className="mt-4 max-w-[19rem] text-sm leading-relaxed text-muted-foreground">{LOUNGE.tagline}</p>
-            <p className="mt-2 text-xs tracking-[0.12em] uppercase text-gold">{LOUNGE.hours}</p>
+            <p className="mt-2 text-xs tracking-[0.12em] uppercase text-gold">{LOUNGE.hoursSummary}</p>
           </header>
 
           <nav

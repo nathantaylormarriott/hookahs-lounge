@@ -1,6 +1,6 @@
 import { loungeFaqs } from "@/data/faq";
 import { getAllMenuSections, parsePriceGbp } from "@/data/menu";
-import { LOUNGE, OPENING_DAYS, SITE_URL } from "@/lib/lounge";
+import { LOUNGE, OPENING_HOURS, SITE_URL } from "@/lib/lounge";
 import { galleryImages, loungeLogo } from "@/lib/site-images";
 
 function absoluteUrl(path: string) {
@@ -27,7 +27,6 @@ export function getLocalBusinessJsonLd() {
     description: LOUNGE.seoDescription,
     url,
     telephone: LOUNGE.phoneE164,
-    email: LOUNGE.email,
     image: images,
     logo: absoluteUrl(loungeLogo),
     priceRange: LOUNGE.priceRange,
@@ -45,13 +44,13 @@ export function getLocalBusinessJsonLd() {
       longitude: LOUNGE.geo.longitude,
     },
     openingHours: LOUNGE.openingHoursSchema,
-    openingHoursSpecification: OPENING_DAYS.map((day) => ({
+    openingHoursSpecification: OPENING_HOURS.map((slot) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: `https://schema.org/${day}`,
-      opens: LOUNGE.opens,
-      closes: LOUNGE.closes,
+      dayOfWeek: `https://schema.org/${slot.day}`,
+      opens: slot.opens,
+      closes: slot.closes,
     })),
-    sameAs: [LOUNGE.facebookUrl],
+    sameAs: [LOUNGE.instagramUrl, LOUNGE.instagramAltUrl, LOUNGE.tiktokUrl, LOUNGE.menuUrl],
     areaServed: {
       "@type": "City",
       name: LOUNGE.areaServed,

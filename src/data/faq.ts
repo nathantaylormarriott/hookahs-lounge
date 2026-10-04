@@ -7,22 +7,21 @@ export const loungeFaqs: FaqItem[] = [
   {
     question: "Do I need to book, or can I walk in?",
     answer:
-      "Walk-ins are welcome when we have space. For larger groups or a specific time, use the contact form or call 07922 466215 and we will do our best to hold a table for you.",
+      "Walk-ins are welcome when we have space. For larger groups or a specific time, use the contact form or call 0121 440 8154 and we will do our best to hold a table for you.",
   },
   {
     question: "Is there parking nearby?",
     answer:
-      "There is on-street parking around Lower Ford Street and nearby side roads. At busy times it can fill up quickly — allow a few extra minutes, or consider a taxi if you are coming in a group.",
+      "There is on-street parking around Moseley Road and the side streets in Balsall Heath. At busy times it fills up quickly — allow a few extra minutes, or consider a taxi if you are coming in a group.",
   },
   {
     question: "What are your opening hours?",
     answer:
-      "We are open every day from 12:00 midday until 2:00 am, including weekends and bank holidays unless we post otherwise on our Facebook page.",
+      "We open every day at 12:00 midday. Sunday to Thursday we close at 2:00 am. Friday and Saturday we close at 3:00 am. Hours can change on bank holidays — check our Instagram if you are travelling specially.",
   },
   {
     question: "Who can visit?",
-    answer:
-      "Hookahs Lounge is for adults aged 18 and over only. We may ask for valid photo ID.",
+    answer: "HOOKAHS is for adults aged 18 and over only. We may ask for valid photo ID.",
   },
   {
     question: "How long does a shisha session last?",

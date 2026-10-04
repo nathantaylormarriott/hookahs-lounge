@@ -6,9 +6,19 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig({
+const nitroOptions = {
   // Netlify: static assets in `dist/`, SSR handler in `.netlify/functions-internal/`.
-  nitro: { preset: "netlify" },
+  preset: "netlify",
+  // Leave the native Chrome-impersonation package outside the bundle. Netlify's Linux
+  // install traces impit and its platform binary into the function.
+  rollupConfig: {
+    external: ["impit"],
+  },
+  traceDeps: ["impit"],
+};
+
+export default defineConfig({
+  nitro: nitroOptions as { preset: string },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

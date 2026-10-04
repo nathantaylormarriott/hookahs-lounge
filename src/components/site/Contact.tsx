@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/site/SectionHeading";
 import { LOUNGE } from "@/lib/lounge";
 import { NETLIFY_FORM_NAME, submitNetlifyForm } from "@/lib/netlify-form";
+
+const fieldClass =
+  "mt-2 w-full border-0 border-b border-foreground/20 bg-transparent px-0 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/50 focus:border-gold";
 
 export function Contact() {
   const [sending, setSending] = useState(false);
@@ -24,64 +28,61 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl">
+    <section id="contact" className="relative scroll-mt-28 px-5 py-24 sm:py-32">
+      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <Reveal>
-          <span className="eyebrow">Contact</span>
-          <h2 className="section-title-shadow mt-4 text-3xl sm:text-5xl">Book a table or ask us anything</h2>
+          <SectionHeading label="Contact" title="Hold a table.">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Walk-ins are welcome when there is space. For a group, send a time and we will do our best.
+            </p>
+            <a
+              href={LOUNGE.phoneHref}
+              className="mt-8 inline-block font-display text-4xl tracking-[-0.045em] text-foreground transition-colors hover:text-gold sm:text-5xl"
+            >
+              {LOUNGE.phoneDisplay}
+            </a>
+            <p className="mt-4 text-sm text-muted-foreground">{LOUNGE.addressLine}</p>
+          </SectionHeading>
         </Reveal>
 
-        <Reveal delay={140}>
-          <div className="glass-panel shadow-soft mt-12 rounded-2xl p-7 sm:p-9">
-            <form
-              name={NETLIFY_FORM_NAME}
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={onSubmit}
-            >
-              <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
-              <p className="hidden" aria-hidden>
-                <label>
-                  Leave this empty
-                  <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                </label>
-              </p>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Name" name="name" required />
-                <Field label="Phone" name="phone" type="tel" required />
-                <Field label="Date & time" name="when" placeholder="Fri 9pm" />
-                <Field label="Guests" name="guests" type="number" placeholder="4" />
-              </div>
-
-              <label className="mt-5 block">
-                <span className="text-xs tracking-[0.18em] uppercase text-muted-foreground">
-                  Message
-                </span>
-                <textarea
-                  name="message"
-                  rows={4}
-                  className="mt-2 w-full resize-none rounded-lg border border-input bg-secondary/40 px-4 py-3 text-sm outline-none transition-colors focus:border-gold"
-                />
+        <Reveal delay={120}>
+          <form
+            name={NETLIFY_FORM_NAME}
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={onSubmit}
+            className="lg:pt-16"
+          >
+            <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+            <p className="hidden" aria-hidden>
+              <label>
+                Leave this empty
+                <input name="bot-field" tabIndex={-1} autoComplete="off" />
               </label>
+            </p>
 
-              <button
-                type="submit"
-                disabled={sending}
-                className="btn-shadow mt-7 w-full rounded-full bg-gold py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.01] disabled:opacity-60 sm:w-auto sm:px-10"
-              >
-                {sending ? "Sending…" : "Send enquiry"}
-              </button>
-              <p className="mt-4 text-xs text-muted-foreground">
-                In a hurry? Call{" "}
-                <a href={LOUNGE.phoneHref} className="text-gold">
-                  {LOUNGE.phoneDisplay}
-                </a>
-                .
-              </p>
-            </form>
-          </div>
+            <div className="grid gap-x-8 sm:grid-cols-2">
+              <Field label="Name" name="name" required />
+              <Field label="Phone" name="phone" type="tel" required />
+              <Field label="Date & time" name="when" placeholder="Fri 9pm" />
+              <Field label="Guests" name="guests" type="number" placeholder="4" />
+            </div>
+
+            <label className="mt-2 block sm:col-span-2">
+              <span className="text-[11px] tracking-[0.24em] text-muted-foreground uppercase">Message</span>
+              <textarea name="message" rows={3} className={`${fieldClass} resize-none`} />
+            </label>
+
+            <button
+              type="submit"
+              disabled={sending}
+              className="btn-shadow mt-8 inline-flex items-center gap-3 rounded-full bg-gold py-3 pr-3 pl-6 text-xs font-semibold tracking-[0.16em] text-primary-foreground uppercase transition-transform hover:scale-[1.02] disabled:opacity-60"
+            >
+              {sending ? "Sending" : "Send enquiry"}
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary-foreground/15">→</span>
+            </button>
+          </form>
         </Reveal>
       </div>
     </section>
@@ -103,13 +104,13 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs tracking-[0.18em] uppercase text-muted-foreground">{label}</span>
+      <span className="text-[11px] tracking-[0.24em] text-muted-foreground uppercase">{label}</span>
       <input
         name={name}
         type={type}
         required={required}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-lg border border-input bg-secondary/40 px-4 py-3 text-sm outline-none transition-colors focus:border-gold"
+        className={fieldClass}
       />
     </label>
   );

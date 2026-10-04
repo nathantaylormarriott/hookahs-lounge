@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 402 900 224" width="900" height="224" fill="none" role="img" aria-label="HOOKAHS">
+  <g fill="#F6F3EC">
+    <path d="M38 440h22v53h38v-53h22v148h-22v-72H60v72H38z"/>
+    <path fill-rule="evenodd" d="M174 440h66a8 8 0 0 1 8 8v132a8 8 0 0 1-8 8h-66a8 8 0 0 1-8-8V448a8 8 0 0 1 8-8zm14 22v104h38V462z"/>
+    <path fill-rule="evenodd" d="M302 440h66a8 8 0 0 1 8 8v132a8 8 0 0 1-8 8h-66a8 8 0 0 1-8-8V448a8 8 0 0 1 8-8zm14 22v104h38V462z"/>
+    <path d="M420 440h22v58l32-58h25l-36 66 41 82h-24l-33-68-5 9v59h-22z"/>
+    <path fill-rule="evenodd" d="M562 440h26l30 148h-21l-6-30h-32l-6 30h-21zm13 36l-11 62h22z"/>
+    <path d="M665 440h22v53h38v-53h22v148h-22v-72h-38v72h-22z"/>
+    <path d="M798 440h56a8 8 0 0 1 8 8v36h-22v-22h-28v42h42a8 8 0 0 1 8 8v64a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8v-36h22v22h28v-42h-42a8 8 0 0 1-8-8v-64a8 8 0 0 1 8-8z"/>
+  </g>
+</svg>

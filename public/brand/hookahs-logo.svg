@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 378 1040 268" width="1040" height="268" fill="none" role="img" aria-label="HOOKAHS">
+  <g fill="#F6F3EC">
+    <path d="M38 440h22v53h38v-53h22v148h-22v-72H60v72H38z"/>
+    <path fill-rule="evenodd" d="M174 440h66a8 8 0 0 1 8 8v132a8 8 0 0 1-8 8h-66a8 8 0 0 1-8-8V448a8 8 0 0 1 8-8zm14 22v104h38V462z"/>
+    <path fill-rule="evenodd" d="M302 440h66a8 8 0 0 1 8 8v132a8 8 0 0 1-8 8h-66a8 8 0 0 1-8-8V448a8 8 0 0 1 8-8zm14 22v104h38V462z"/>
+    <path d="M420 440h22v58l32-58h25l-36 66 41 82h-24l-33-68-5 9v59h-22z"/>
+    <path fill-rule="evenodd" d="M562 440h26l30 148h-21l-6-30h-32l-6 30h-21zm13 36l-11 62h22z"/>
+    <path d="M665 440h22v53h38v-53h22v148h-22v-72h-38v72h-22z"/>
+    <path d="M798 440h56a8 8 0 0 1 8 8v36h-22v-22h-28v42h42a8 8 0 0 1 8 8v64a8 8 0 0 1-8 8h-56a8 8 0 0 1-8-8v-36h22v22h28v-42h-42a8 8 0 0 1-8-8v-64a8 8 0 0 1 8-8z"/>
+    <path d="M931 390h22l3 10h-28z"/>
+    <path d="M905 400h74c0 6-4 9-9 10h-4v6h-44v-6h-4c-5-1-9-4-9-10z"/>
+    <rect x="933" y="414" width="18" height="14" rx="2"/>
+    <rect x="938" y="426" width="8" height="90"/>
+    <ellipse cx="942" cy="456" rx="9" ry="14"/>
+    <ellipse cx="942" cy="488" rx="12" ry="15"/>
+    <path d="M931 498h22l4 18h-30z"/>
+    <path d="M932 512h20c1 14 6 22 15 32 10 10 17 22 17 38 0 10-2 18-4 24H904c-2-6-4-14-4-24 0-16 7-28 17-38 9-10 14-18 15-32z"/>
+    <rect x="896" y="603" width="92" height="8" rx="3"/>
+    <rect x="922" y="624" width="64" height="10" rx="4"/>
+    <rect x="928" y="619" width="5" height="20" rx="2"/>
+    <rect x="940" y="621" width="4" height="16" rx="2"/>
+    <rect x="972" y="621" width="4" height="16" rx="2"/>
+    <rect x="998" y="596" width="6" height="12" rx="2" transform="rotate(10 1001 602)"/>
+  </g>
+  <g fill="none" stroke="#F6F3EC" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M936 524C920 506 898 494 888 504c-8 12 0 34 20 52"/>
+    <path d="M948 524c14-16 36-30 46-20 8 10 0 30-22 48"/>
+    <path d="M900 609C878 608 870 616 876 624c8 10 34 12 52 5"/>
+    <path d="M984 628c18 0 38-4 44-14 4-8-2-14-12-14-6 0-12 1-16 2"/>
+  </g>
+</svg>

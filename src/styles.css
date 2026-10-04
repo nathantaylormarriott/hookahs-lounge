@@ -198,6 +198,36 @@ html.lenis body {
   }
 }
 
+::selection {
+  background: var(--gold);
+  color: var(--primary-foreground);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: flavour-marquee 200s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes flavour-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 @keyframes share-nudge {
   0%,
   100% {
